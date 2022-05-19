@@ -1,4 +1,4 @@
-fndef __SANDPILES__LIB__
+#ifndef __SANDPILES__LIB__
 #define __SANDPILES__LIB__
 
 #include <stdlib.h>
