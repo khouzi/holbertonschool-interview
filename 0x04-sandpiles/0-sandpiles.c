@@ -1,5 +1,13 @@
 #include "sandpiles.h"
 
+/**
+ *  verif - test
+ *  @grid: 2D array
+ *  Return: 0
+ */
+
+
+
 
 int verif(int grid[3][3])
 {
