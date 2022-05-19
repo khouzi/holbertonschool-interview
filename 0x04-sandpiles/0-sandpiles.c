@@ -1,12 +1,6 @@
 #include "sandpiles.h"
 
 
-/**
- *   * verif - test
- *     * @grid: 2D array
- *       * Return: 0
- *         */
-
 int verif(int grid[3][3])
 {
 	int i, j;
@@ -23,10 +17,10 @@ int verif(int grid[3][3])
 }
 
 /**
- * print_grid - Print 3x3 grid
- * @grid: 2D array 3*3
- *
- */
+  * print_grid - Print 3x3 grid
+  * @grid: 2D array 3*3
+  *
+  */
 
 static void print_grid(int grid[3][3])
 {
@@ -45,10 +39,27 @@ static void print_grid(int grid[3][3])
 }
 
 /**
- *   * sandpiles_sum - function that computes the sum of two sandpiles
- *     * @grid1: 2D array
- *       * @grid2: 2D array
- *         */
+  * copy - copy of two sandpiles
+  * @scr: 2D array
+  * @des: 2D array
+  */
+void copy(int scr[3][3], int des[3][3])
+{
+	int i, j;
+
+	for (i = 0; i < 3; i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			des[i][j] = scr[i][j];
+		}
+	}
+}
+/**
+  * sandpiles_sum - function that computes the sum of two sandpiles
+  * @grid1: 2D array
+  * @grid2: 2D array
+  */
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
 	int x;
@@ -66,9 +77,7 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 	print_grid(grid1);
 	while (type == 0)
 	{
-		for (i = 0; i < 3; i++)
-			for (j = 0; j < 3; j++)
-				grid1[i][j] = referenceGrid[i][j];
+		copy(grid1, referenceGrid);
 		for (x = 0; x < 3; x++)
 			for (y = 0; y < 3; y++)
 			{
