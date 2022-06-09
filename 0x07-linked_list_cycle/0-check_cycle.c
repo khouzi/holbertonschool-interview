@@ -26,4 +26,4 @@ int check_cycle(listint_t *list)
 		rabbit = rabbit->next->next;
 	}
 	return (0);
-}:
+}
