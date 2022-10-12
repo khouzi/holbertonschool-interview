@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+The N queens puzzle
+"""
 
 
 import sys
@@ -19,13 +22,6 @@ if not isinstance(int(sys.argv[1]), int):
     exit(1)
 
 n = int(sys.argv[1])
-
-
-def solveNQueens(n):
-    solutions = []
-    state = []
-    search(state, solutions, n)
-    return solutions
 
 
 def is_valid_state(state, n):
@@ -56,6 +52,13 @@ def search(state, solutions, n):
         state.append(candidate)
         search(state, solutions, n)
         state.pop()
+
+
+def solveNQueens(n):
+    solutions = []
+    state = []
+    search(state, solutions, n)
+    return solutions
 
 
 def state_to_string(state):
