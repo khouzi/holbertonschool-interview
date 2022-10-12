@@ -1,73 +1,39 @@
 #!/usr/bin/python3
-"""
-The N queens puzzle
-"""
-
-
+""" program that solves the N queens problem """
 import sys
+
+
+def isSafe(Board, line, i):
+    """ checks if we can insert queen at column i in that line in Board"""
+    for x in range(line):
+        if (Board[x] == i or
+                Board[x] + line - x == i or
+                Board[x] + x - line == i):
+            return False
+    return True
+
+
+def Fill_line(Board, line):
+    """ fills each line of the board with the correct index """
+    for i in range(len(Board)):
+        if isSafe(Board, line, i):
+            Board[line] = i
+            if line < len(Board) - 1:
+                Fill_line(Board, line + 1)
+            else:
+                print([[i, Board[i]] for i in range(len(Board))])
 
 if len(sys.argv) != 2:
     print("Usage: nqueens N")
-    exit(1)
+    sys.exit(1)
 try:
-    int(sys.argv[1])
-except Exception:
+    n = int(sys.argv[1])
+except:
     print("N must be a number")
-    exit(1)
-if int(sys.argv[1]) < 4:
+    sys.exit(1)
+if n < 4:
     print("N must be at least 4")
-    exit(1)
-if not isinstance(int(sys.argv[1]), int):
-    print("N must be a number")
-    exit(1)
+    sys.exit(1)
 
-n = int(sys.argv[1])
-
-
-def is_valid_state(state, n):
-    return len(state) == n
-
-
-def get_candidates(state, n):
-    if not state:
-        return range(n)
-
-    position = len(state)
-    candidates = set(range(n))
-    for row, col in enumerate(state):
-        candidates.discard(col)
-        dist = position - row
-        candidates.discard(col + dist)
-        candidates.discard(col - dist)
-    return candidates
-
-
-def search(state, solutions, n):
-    if is_valid_state(state, n):
-        state_string = state_to_string(state)
-        solutions.append(state_string)
-        return
-
-    for candidate in get_candidates(state, n):
-        state.append(candidate)
-        search(state, solutions, n)
-        state.pop()
-
-
-def solveNQueens(n):
-    solutions = []
-    state = []
-    search(state, solutions, n)
-    return solutions
-
-
-def state_to_string(state):
-    res = []
-
-    for x, y in enumerate(state):
-        res.append([x, y])
-    return res
-
-
-for solution in solveNQueens(n):
-    print(solution)
+Board = [-1 for i in range(n)]
+Fill_line(Board, 0)
